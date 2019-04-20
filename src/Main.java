@@ -42,6 +42,4 @@ public class Main {
 		algorithm = alg;
 		quantumTime = Integer.parseInt(qt);
 	}
-
-
 }
