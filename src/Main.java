@@ -8,10 +8,28 @@ public class Main {
 	
 	static File file = null;
 	static BufferedReader input = null;
+	static String algorithm = null;
+	static int quantumTime = 0;
 	
 	public static void main(String[] args) {
-		getFile("./src/" + args[0]);
+		//setup from the arguments
+		getFile("./src/" + args[2]);
 		readAndPrintFile();
+		getRemainingAguments(args[0],args[1]);
+		
+		//execution of arguments
+	}
+
+	/***
+	 * Function: getRemainingAguments
+	 * Purpose: to obtain the remaining arguments from the command line
+	 * @param alg
+	 * @param qt
+	 */
+	private static void getRemainingAguments(String alg, String qt) {
+		// TODO Auto-generated method stub
+		algorithm = alg;
+		quantumTime = Integer.parseInt(qt);
 	}
 
 	/***
