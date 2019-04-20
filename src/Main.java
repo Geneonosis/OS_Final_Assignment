@@ -13,8 +13,13 @@ public class Main {
 	
 	public static void main(String[] args) {
 		//setup from the arguments
+		
+		// TODO getting the file and reading from the file
+		// need to be in their own thread!!!
 		getFile("./src/" + args[2]);
 		readAndPrintFile();
+		
+	
 		getRemainingAguments(args[0],args[1]);
 		
 		//execution of arguments
