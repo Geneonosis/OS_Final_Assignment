@@ -1,10 +1,17 @@
+
 public class Main {
 	
+	static DoubleLinkList DLL = null;
 	static String algorithm = null;
 	static int quantumTime = 0;
 	
 	public static void main(String[] args) {
 		//setup from the arguments
+		DLL = new DoubleLinkList();
+		DLL.head = DLL.new Node(1);
+		DLL.head.next = DLL.new Node(2);
+		
+		System.out.println(DLL.head.data + " " + DLL.head.next.data);
 		
 		// TODO getting the file and reading from the file
 		// need to be in their own thread!!!
@@ -42,6 +49,4 @@ public class Main {
 		algorithm = alg;
 		quantumTime = Integer.parseInt(qt);
 	}
-
-
 }
