@@ -9,7 +9,7 @@ public class Main {
 		//setup from the arguments
 		DLL = new DoubleLinkList();
 		DLL.head = DLL.new Node(1);
-		DLL.head.next = DLL.new Node(2);
+		DLL.head.next = DLL.new Node(20);
 		
 		System.out.println(DLL.head.data + " " + DLL.head.next.data);
 		
