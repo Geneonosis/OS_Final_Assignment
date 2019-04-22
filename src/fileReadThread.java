@@ -61,8 +61,11 @@ public class fileReadThread extends Main implements Runnable{
 			//TODO: create a PCB structure, read other parameters into it
 			System.out.println("Made it to proc case");
 			System.out.println(strings.length);
-			DLL.head.next = DLL.new PCB(Integer.parseInt(strings[2]),Integer.parseInt(strings[3]));
+
+			DLL.InsertAtTail(DLL.new PCB(Integer.parseInt(strings[2]),Integer.parseInt(strings[3]),GenerateCPUIOBurstArray(strings,Integer.parseInt(strings[3]))));
 			//DLL.head.next = DLL.new PCB(1,7);
+			System.out.println("head.next: " + DLL.head.next.toString());
+			
 			break;
 		case"sleep":
 			System.out.println("Made it to sleep case");
@@ -76,6 +79,20 @@ public class fileReadThread extends Main implements Runnable{
 		}
 	}
 
+	/***
+	 * 
+	 * @param strings
+	 * @return
+	 */
+	public int [] GenerateCPUIOBurstArray(String[] strings, int length ) {
+		int j = 0;
+		int array[] = new int[length];
+		for(int i = 4; i < strings.length; i++) {
+			array[j] = Integer.parseInt(strings[i]);
+			j++;
+		}
+		return array;	
+	}
 	/***
 	 * Function: getFile
 	 * Purpose: to get a file to cache

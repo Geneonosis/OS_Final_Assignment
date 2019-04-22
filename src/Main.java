@@ -7,13 +7,6 @@ public class Main {
 	public static void main(String[] args) {
 		//setup from the arguments
 		DLL = new Ready_Q();
-		DLL.head = DLL.new PCB(1,7);
-		
-		//System.out.println(DLL.head.PR + " " + DLL.head.next.PR);
-		//System.out.println(DLL.head.toString());
-		
-		// TODO getting the file and reading from the file
-		// need to be in their own thread!!!
 		FileReadThread(args);
 		
 		// starting to build a thread for this
@@ -31,7 +24,7 @@ public class Main {
 		
 		try {
 			t1.join();
-			System.out.println(DLL.head.next.toString());
+			//System.out.println(DLL.head.toString());
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
