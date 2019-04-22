@@ -18,8 +18,6 @@ public class Ready_Q {
 	    PCB prev; 
 	    PCB next; 
 	  
-	    // Constructor to create a new node 
-	    // next and prev is by default initialized as null
 	    /***
 	     * PCB is a process control block structure that acts as a node in the DLL
 	     * @param priority priority defined in the input file
@@ -28,22 +26,18 @@ public class Ready_Q {
 	     */
 	    PCB(int priority, int num_CPU_IO_Burst, int[] PCB_CPU_IO_Array) { 
 	    	PR = priority;
-
 	    	numCPUBurst = (num_CPU_IO_Burst / 2) + 1; 
 	    	numIOBurst = num_CPU_IO_Burst / 2;
-	    	
 	    	CPUBurst = new int[numCPUBurst];
 	    	IOBurst = new int[numIOBurst];
-	    	
 	    	FillInIOandCPUBurstArrays(PCB_CPU_IO_Array);
-	    	
 	    	cpuindex = 0;
 	    	ioindex = 0;
-	    
 	    }
 
 	    /***
-	     * 
+	     * Function: FillInIOandCPUBurstArrays
+	     * Purpose: fills in the IO and CPU burst array from the contents of the file
 	     * @param PCB_CPU_IO_Array
 	     */
 		private void FillInIOandCPUBurstArrays(int[] PCB_CPU_IO_Array) {
@@ -52,7 +46,6 @@ public class Ready_Q {
 	    	for(int i = 0; i < PCB_CPU_IO_Array.length; i++) {
 	    		if(i % 2 == 0) {
 	    			CPUBurst[j] = PCB_CPU_IO_Array[i];
-	    			//System.out.print(CPUBurst[j] + " ");
 	    		    j++;
 	    		}else {
 	    			IOBurst[k] = PCB_CPU_IO_Array[i];
@@ -60,6 +53,7 @@ public class Ready_Q {
 	    		}
 	    	}
 		}
+		
 	    public String toString() {
 			String str = "";
 			str += "Report: \n";
@@ -83,12 +77,16 @@ public class Ready_Q {
 	    }
 	}
 
+	/***
+	 * InsertAtTail(PCB pcb)
+	 * Purpose: Insert A pcb at the end of the ready_Q
+	 * @param pcb
+	 */
 	public void InsertAtTail(PCB pcb) {
 		//for if there is only one pcb
 		//System.out.println(pcb.toString());
 		if(head == null) {
 			head = pcb;
-			System.out.println(head.toString());
 			head.next = head;
 			head.prev = head;
 		}else{

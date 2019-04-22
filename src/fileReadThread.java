@@ -12,23 +12,19 @@ public class fileReadThread extends Main implements Runnable{
 	//Ready_Q dll2 = null;
 	
 	public fileReadThread(String string) {
-		// TODO Auto-generated constructor stub
 		fileName = "./src/" + string;
 	}
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-		System.out.println(fileName);
+		//System.out.println(fileName);
 		getFile(fileName);
 		readAndPrintFile();
-		
 	}
 
 	/***
 	 * Funciton: readAndPrintFile()
 	 * Purpose: to read a file and print its contents into the console
-	 * TODO: Break up later?
 	 */
 	public void readAndPrintFile() {
 		try {
@@ -58,14 +54,7 @@ public class fileReadThread extends Main implements Runnable{
 	private void DetermineWhatToDoWith(String []strings) {
 		switch(strings[0]) {
 		case"proc":
-			//TODO: create a PCB structure, read other parameters into it
-			System.out.println("Made it to proc case");
-			System.out.println(strings.length);
-
 			DLL.InsertAtTail(DLL.new PCB(Integer.parseInt(strings[2]),Integer.parseInt(strings[3]),GenerateCPUIOBurstArray(strings,Integer.parseInt(strings[3]))));
-			//DLL.head.next = DLL.new PCB(1,7);
-			System.out.println("head.next: " + DLL.head.next.toString());
-			
 			break;
 		case"sleep":
 			System.out.println("Made it to sleep case");
@@ -80,8 +69,9 @@ public class fileReadThread extends Main implements Runnable{
 	}
 
 	/***
-	 * 
+	 * takes a string array and converts it into an int array
 	 * @param strings
+	 * @param length
 	 * @return
 	 */
 	public int [] GenerateCPUIOBurstArray(String[] strings, int length ) {
