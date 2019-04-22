@@ -1,17 +1,16 @@
-
 public class Main {
 	
-	static DoubleLinkList DLL = null;
+	static public Ready_Q DLL = null;
 	static String algorithm = null;
 	static int quantumTime = 0;
 	
 	public static void main(String[] args) {
 		//setup from the arguments
-		DLL = new DoubleLinkList();
-		DLL.head = DLL.new Node(1);
-		DLL.head.next = DLL.new Node(20);
+		DLL = new Ready_Q();
+		DLL.head = DLL.new PCB(1,7);
 		
-		System.out.println(DLL.head.data + " " + DLL.head.next.data);
+		//System.out.println(DLL.head.PR + " " + DLL.head.next.PR);
+		//System.out.println(DLL.head.toString());
 		
 		// TODO getting the file and reading from the file
 		// need to be in their own thread!!!
@@ -32,6 +31,7 @@ public class Main {
 		
 		try {
 			t1.join();
+			System.out.println(DLL.head.next.toString());
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

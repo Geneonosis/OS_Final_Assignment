@@ -4,11 +4,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class fileReadThread implements Runnable{
+public class fileReadThread extends Main implements Runnable{
 
 	private File file;
 	String fileName;
 	private BufferedReader input;
+	//Ready_Q dll2 = null;
 	
 	public fileReadThread(String string) {
 		// TODO Auto-generated constructor stub
@@ -38,7 +39,7 @@ public class fileReadThread implements Runnable{
 				String words[] = str.split(" ");
 				//System.out.println(words[0]);
 				
-				DetermineWhatToDoWith(words[0]);
+				DetermineWhatToDoWith(words);
 			}
 		} catch (FileNotFoundException e) {
 			System.out.println("FileNotFoundException " + e + " in readAndPrintFile()");
@@ -54,11 +55,14 @@ public class fileReadThread implements Runnable{
 	 * Purpose: to control the flow of execution for the program based on words[0]
 	 * @param string
 	 */
-	private void DetermineWhatToDoWith(String string) {
-		switch(string) {
+	private void DetermineWhatToDoWith(String []strings) {
+		switch(strings[0]) {
 		case"proc":
 			//TODO: create a PCB structure, read other parameters into it
 			System.out.println("Made it to proc case");
+			System.out.println(strings.length);
+			DLL.head.next = DLL.new PCB(Integer.parseInt(strings[2]),Integer.parseInt(strings[3]));
+			//DLL.head.next = DLL.new PCB(1,7);
 			break;
 		case"sleep":
 			System.out.println("Made it to sleep case");
