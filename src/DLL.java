@@ -1,5 +1,5 @@
 
-public class Ready_Q {
+public class DLL {
 	PCB head;
 	/* Doubly Linked list Node*/
 	class PCB {
@@ -97,6 +97,8 @@ public class Ready_Q {
 		}
 	}
 	
+	
+	
 	public String toString() {
 		int count = 1;
 		String str = "";
@@ -113,5 +115,15 @@ public class Ready_Q {
 		str += crawl.toString();
 		str += "--> points back to head\n";
 		return str;
+	}
+
+
+
+	public boolean emptyCheck() {
+		// TODO Auto-generated method stub
+		if(head == null) {
+			return true;
+		}
+		return false;
 	}
 }

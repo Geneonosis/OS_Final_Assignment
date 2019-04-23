@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.concurrent.Semaphore;
 
 public class fileReadThread extends Main implements Runnable{
 
@@ -37,6 +38,7 @@ public class fileReadThread extends Main implements Runnable{
 				
 				DetermineWhatToDoWith(words);
 			}
+			file_read_done = 1;
 		} catch (FileNotFoundException e) {
 			System.out.println("FileNotFoundException " + e + " in readAndPrintFile()");
 			e.printStackTrace();
@@ -52,19 +54,42 @@ public class fileReadThread extends Main implements Runnable{
 	 * @param string
 	 */
 	private void DetermineWhatToDoWith(String []strings) {
+		Semaphore s1 = semaphore;
 		switch(strings[0]) {
 		case"proc":
-			DLL.InsertAtTail(DLL.new PCB(Integer.parseInt(strings[2]),Integer.parseInt(strings[3]),GenerateCPUIOBurstArray(strings,Integer.parseInt(strings[3]))));
+			int firstInt = Integer.parseInt(strings[2]);
+			int secondInt = Integer.parseInt(strings[3]);
+			Ready_Q.InsertAtTail(Ready_Q.new PCB(firstInt,secondInt,GenerateCPUIOBurstArray(strings,secondInt)));
+			/*try {
+				s1.acquire();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}*/
 			break;
 		case"sleep":
-			System.out.println("Made it to sleep case");
+			sleep(strings);
 			break;
 		case"stop":
 			System.out.println("Made it to stop case");
 			break;
-		case"default":
+		default:
 			System.out.println("Default in Determine Method");
 			break;
+		}
+	}
+
+	private void sleep(String[] strings) {
+		System.out.println("Made it to sleep case");
+		System.out.println("Sleep for : " + strings[1] + "ms");
+		try {
+			Thread.sleep(Integer.parseInt(strings[1]));
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

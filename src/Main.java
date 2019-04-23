@@ -1,17 +1,23 @@
+import java.util.concurrent.Semaphore;
+
 public class Main {
 	
-	static public Ready_Q DLL = null;
+	static public DLL Ready_Q = null;
+	static public DLL IO_Q = null;
 	static String algorithm = null;
 	static int quantumTime = 0;
+	Semaphore semaphore = new Semaphore(0);
+	static int file_read_done = 0;
 	
 	public static void main(String[] args) {
 		//setup from the arguments
-		DLL = new Ready_Q();
+		Ready_Q = new DLL();
+		IO_Q = new DLL();
 		FileReadThread(args);
 		
 		// starting to build a thread for this
 		getRemainingAguments(args[0],args[1]);
-		System.out.println(DLL.toString());
+		System.out.println(Ready_Q.toString());
 		//execution of arguments
 	}
 
