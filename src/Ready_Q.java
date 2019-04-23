@@ -55,20 +55,19 @@ public class Ready_Q {
 		}
 		
 	    public String toString() {
-			String str = "";
-			str += "Report: \n";
-			str += "Priority: " + PR + "\n";
-			str += "numCPUBurst: " + numCPUBurst + "\n";
-			str += "numIOBurst: " + numIOBurst + "\n";
-			str += "cpuindex: " + cpuindex + "\n";
-			str += "ioindex: " + ioindex + "\n";
-			str += "CPUBurst Array: ";
+			String str = "\n";
+			str += String.format("%-15s %1d\n", "Priority:", PR);
+			str += String.format("%-15s %1d\n", "numCPUBurst:", numCPUBurst);
+			str += String.format("%-15s %1d\n", "numIOBurst:", numIOBurst);
+			str += String.format("%-15s %1d\n", "cpuindex:", cpuindex);
+			str += String.format("%-15s %1d\n", "ioindex:", ioindex);
+			str += String.format("%-16s", "CPUBurst Array:");
 			int i = 0;
 			for(i = 0; i < CPUBurst.length; i++) {
 				str += i + ": [" + CPUBurst[i] + "] "; 
 			}
 			str += "\n";
-			str += "IOBurst Array: ";
+			str += String.format("%-16s", "IOBurst Array:");
 			for(i = 0; i < IOBurst.length; i++) {
 				str += i + ": [" + IOBurst[i] + "] ";
 			}
@@ -83,8 +82,6 @@ public class Ready_Q {
 	 * @param pcb
 	 */
 	public void InsertAtTail(PCB pcb) {
-		//for if there is only one pcb
-		//System.out.println(pcb.toString());
 		if(head == null) {
 			head = pcb;
 			head.next = head;
@@ -98,5 +95,23 @@ public class Ready_Q {
 			pcb.prev = head.prev;
 			head.prev = pcb;
 		}
+	}
+	
+	public String toString() {
+		int count = 1;
+		String str = "";
+		PCB crawl;
+		for(crawl = head; crawl.next != head; crawl = crawl.next) {
+			str += "<-- ";
+			str += "NODE: " + count;
+			str += crawl.toString();
+			str += "-->\n";
+			count++;
+		}
+		str += "<--";
+		str += "NODE: " + count;
+		str += crawl.toString();
+		str += "--> points back to head\n";
+		return str;
 	}
 }

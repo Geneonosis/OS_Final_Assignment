@@ -11,7 +11,7 @@ public class Main {
 		
 		// starting to build a thread for this
 		getRemainingAguments(args[0],args[1]);
-		
+		System.out.println(DLL.toString());
 		//execution of arguments
 	}
 
