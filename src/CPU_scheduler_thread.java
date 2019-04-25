@@ -1,4 +1,3 @@
-
 public class CPU_scheduler_thread extends Main implements Runnable{
 	String ALG = null;
 	
@@ -18,7 +17,20 @@ public class CPU_scheduler_thread extends Main implements Runnable{
 			switch(ALG) {
 				case "FIFO":
 					//TODO:res = sem_timedwait(&sem_cpu,/*some time say 1 sec*/);
-					
+					System.out.println("got to FIFO");
+					s1.release();
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+						
+					//Ready_Q.PCB pcb = Ready_Q.remove();
+					System.out.println(Ready_Q.printBackwards());
+					//DLL.PCB pcb = Ready_Q.remove();
+
+					System.out.println("Semaphore 1 released");
 					break;
 				case "SJF":
 					break;
@@ -27,7 +39,8 @@ public class CPU_scheduler_thread extends Main implements Runnable{
 				case "PR":
 					break;
 				default:
-					System.out.println("bravely");			
+					System.out.println("bravely");
+					break;
 			}
 		}
 	}

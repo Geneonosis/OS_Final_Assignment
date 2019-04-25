@@ -6,7 +6,7 @@ public class Main {
 	static public DLL IO_Q = null;
 	static String algorithm = null;
 	static int quantumTime = 0;
-	Semaphore semaphore = new Semaphore(0);
+	Semaphore s1 = new Semaphore(0);
 	static int file_read_done = 0;
 	
 	public static void main(String[] args) {
@@ -27,9 +27,12 @@ public class Main {
 	private static void FileReadThread(String[] args) {
 		Thread t1 = new Thread(new fileReadThread(args[2]));
 		t1.start();
+		Thread t2 = new Thread(new CPU_scheduler_thread(args[0]));
+		t2.start();
 		
 		try {
 			t1.join();
+			t2.join();
 			//System.out.println(DLL.head.toString());
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block

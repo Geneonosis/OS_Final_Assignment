@@ -54,18 +54,19 @@ public class fileReadThread extends Main implements Runnable{
 	 * @param string
 	 */
 	private void DetermineWhatToDoWith(String []strings) {
-		Semaphore s1 = semaphore;
+		//Semaphore s1 = semaphore;
 		switch(strings[0]) {
 		case"proc":
 			int firstInt = Integer.parseInt(strings[2]);
 			int secondInt = Integer.parseInt(strings[3]);
 			Ready_Q.InsertAtTail(Ready_Q.new PCB(firstInt,secondInt,GenerateCPUIOBurstArray(strings,secondInt)));
-			/*try {
+			try {
 				s1.acquire();
+				System.out.println("Semaphore 1 Aquired");
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}*/
+			}
 			break;
 		case"sleep":
 			sleep(strings);
@@ -95,7 +96,7 @@ public class fileReadThread extends Main implements Runnable{
 
 	/***
 	 * takes a string array and converts it into an int array
-	 * @param strings
+	 * @param strings example
 	 * @param length
 	 * @return
 	 */

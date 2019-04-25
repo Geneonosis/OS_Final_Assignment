@@ -87,17 +87,48 @@ public class DLL {
 			head.next = head;
 			head.prev = head;
 		}else{
+			pcb.prev = head.prev;
+			head.prev = pcb;
 			if(head.next == head) {
 				head.next = pcb;
 			}
-			head.prev.next = pcb;
 			pcb.next = head;
-			pcb.prev = head.prev;
-			head.prev = pcb;
 		}
 	}
 	
-	
+	public PCB remove() {
+		System.out.println("remove me");
+		if(head == null) {
+			return null;
+		}
+		PCB temp = null;
+		temp = head;
+		if(temp == null) {
+			System.out.println("temp is null");
+		}else {
+			System.out.println("temp is not null");
+		}
+		
+		if(head.next != head) {
+			System.out.println("here");
+			head = head.next;
+			if(temp.prev == null) {
+				System.out.println("woops");
+			}
+			head.prev = temp.prev;
+			if(head.next == temp) {
+				head.next = head;
+			}
+			temp.next = null;
+			temp.prev = null;
+		}else if(head.next == head){
+			temp.next = null;
+			temp.prev = null;
+		}else{
+			temp = null;
+		}
+		return temp;
+	}
 	
 	public String toString() {
 		int count = 1;
@@ -116,8 +147,31 @@ public class DLL {
 		str += "--> points back to head\n";
 		return str;
 	}
-
-
+	
+	/***
+	 * The exact same as toString except it prints it in the reverse order
+	 * @return String
+	 */
+	public String printBackwards() {
+		int count = 1;
+		String str = "";
+		PCB crawl;
+		if(head.prev == head) {
+			System.out.println("im fucked up");
+		}
+		for(crawl = head; crawl.prev != head; crawl = crawl.prev) {
+			str += "<-- ";
+			str += "NODE: " + count;
+			str += crawl.toString();
+			str += "-->\n";
+			count++;
+		}
+		str += "<--";
+		str += "NODE: " + count;
+		str += crawl.toString();
+		str += "--> points back to head\n";
+		return str;
+	}
 
 	public boolean emptyCheck() {
 		// TODO Auto-generated method stub
