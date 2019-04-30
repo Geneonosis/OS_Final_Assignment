@@ -60,13 +60,10 @@ public class fileReadThread extends Main implements Runnable{
 			int firstInt = Integer.parseInt(strings[2]);
 			int secondInt = Integer.parseInt(strings[3]);
 			Ready_Q.InsertAtTail(Ready_Q.new PCB(firstInt,secondInt,GenerateCPUIOBurstArray(strings,secondInt)));
-			try {
-				s1.acquire();
-				System.out.println("Semaphore 1 Aquired");
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			System.out.println("Semaphore 1 Release");
+			s1.release();
+
+
 			break;
 		case"sleep":
 			sleep(strings);

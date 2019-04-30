@@ -1,6 +1,7 @@
 
 public class DLL {
 	PCB head;
+	PCB tail;
 	/* Doubly Linked list Node*/
 	class PCB {
 		/* class variables */
@@ -83,16 +84,16 @@ public class DLL {
 	 */
 	public void InsertAtTail(PCB pcb) {
 		if(head == null) {
+			System.out.println("null head");
 			head = pcb;
-			head.next = head;
-			head.prev = head;
+			tail = pcb;
+			pcb.next = null;
+			pcb.prev = null;
 		}else{
-			pcb.prev = head.prev;
-			head.prev = pcb;
-			if(head.next == head) {
-				head.next = pcb;
-			}
-			pcb.next = head;
+			pcb.prev = tail;
+			pcb.next = null;
+			tail.next = pcb;
+			tail = pcb;
 		}
 	}
 	
@@ -134,7 +135,10 @@ public class DLL {
 		int count = 1;
 		String str = "";
 		PCB crawl;
-		for(crawl = head; crawl.next != head; crawl = crawl.next) {
+		if(head == null) {
+			return "empty";
+		}
+		for(crawl = head; crawl.next != null; crawl = crawl.next) {
 			str += "<-- ";
 			str += "NODE: " + count;
 			str += crawl.toString();
@@ -156,10 +160,7 @@ public class DLL {
 		int count = 1;
 		String str = "";
 		PCB crawl;
-		if(head.prev == head) {
-			System.out.println("im fucked up");
-		}
-		for(crawl = head; crawl.prev != head; crawl = crawl.prev) {
+		for(crawl = tail; crawl.prev != null; crawl = crawl.prev) {
 			str += "<-- ";
 			str += "NODE: " + count;
 			str += crawl.toString();
